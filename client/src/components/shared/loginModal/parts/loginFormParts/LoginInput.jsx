@@ -76,11 +76,9 @@ export default function LoginInput({
       </InputGroup>
       {errors.length > 0 &&
         errors.map((err) => (
-          <>
-            <Box key={err} fontSize={"12px"} color={"red"} margin={"5px"}>
-              {err}
-            </Box>
-          </>
+          <Box key={err} fontSize={"12px"} color={"red"} margin={"5px"}>
+            {err}
+          </Box>
         ))}
     </Box>
   );

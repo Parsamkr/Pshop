@@ -5,6 +5,7 @@ const generateTree = (data) => {
     const node = { slug: parent.slug, name: parent.name };
     if (parent.icon) {
       node.icon = parent.icon;
+      node.image = parent.Image;
     }
     if (parent.children.length) {
       node.leaf = false;

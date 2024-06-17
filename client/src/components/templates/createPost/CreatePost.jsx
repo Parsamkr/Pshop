@@ -1,7 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Flex, Stack, Text } from "@chakra-ui/react";
 import colors from "@/theme/colors";
-
 import SelectCat from "./parts/SelectCat";
 export default function CreatePost() {
   return (
@@ -18,7 +17,9 @@ export default function CreatePost() {
         >
           انتخاب دسته‌بندی
         </Text>
-        <SelectCat />
+        <Suspense>
+          <SelectCat />
+        </Suspense>
       </Stack>
     </Flex>
   );

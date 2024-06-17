@@ -28,7 +28,10 @@ const sendOtpAPI = async (number) => {
     if (error.response.status == 400) {
       return {
         status: 400,
-        message: ["کد برای این شماره ارسال شده !" , "لطفا برای تلاش مجدد دقایقی صبر کنید"],
+        message: [
+          "کد برای این شماره ارسال شده !",
+          "لطفا برای تلاش مجدد دقایقی صبر کنید",
+        ],
       };
     }
   }

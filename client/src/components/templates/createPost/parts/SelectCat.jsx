@@ -17,7 +17,7 @@ export default function SelectCat() {
       searchTree(tree, pageSlug).then((data) => setItem(data));
     }
   }, [pageSlug, tree]);
-  console.log(item);
+
   return (
     <Stack>
       {item?.parent?.name && (

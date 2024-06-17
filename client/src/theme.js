@@ -7,3 +7,4 @@ export const theme = extendTheme({
     ...colors, // adding custom colors
   },
 });
+

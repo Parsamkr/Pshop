@@ -1,5 +1,5 @@
 "use client";
-import { Flex, Box, Divider, Text, Image } from "@chakra-ui/react";
+import { Flex, Box, Divider, Image } from "@chakra-ui/react";
 import SearchBar from "@/components/shared/navBar/searchInput/SearchBar";
 import Categories from "@/components/shared/navBar/categories/Categories";
 import colors from "@/theme/colors";
@@ -11,10 +11,8 @@ import generateTree from "@/utils/categoryFuncs/treeFuncs/generateTree";
 import useSlugtree from "@/store/catStores/slugTree";
 import useChildCatStore from "@/store/catStores/getChildCat";
 import useParentCatStore from "@/store/catStores/getParentsCat";
-import LoginModal from "../loginModal/LoginModal";
 
 export default function Navbar({ catData }) {
-
   const { setChildCategories, categories } = useChildCatStore((state) => ({
     setChildCategories: state.setCategories,
     categories: state.categories,
@@ -31,6 +29,7 @@ export default function Navbar({ catData }) {
   const pathname = usePathname();
   return (
     <Flex
+      
       alignItems={"center"}
       backgroundColor={colors.primary[50]}
       justifyContent={"space-between"}
@@ -57,9 +56,7 @@ export default function Navbar({ catData }) {
               <Categories catData={catData} />
             </>
           )}
-
         {/* <Box> {city} </Box> */}
-
         <Divider
           height={"50px"}
           backgroundColor={"black"}
@@ -67,16 +64,17 @@ export default function Navbar({ catData }) {
           orientation="vertical"
           my={2.5}
         />
-        <Box as={Link} href={"./"}>
+        <Box flexShrink={0} as={Link} href={"./"}>
           <Image
             borderRadius="0"
+            flexShrink={0}
             boxSize="60px"
             src={"/logo.png"}
             alt="Dan Abramov"
           />
         </Box>
       </Flex>
-      <LoginModal />
+    
     </Flex>
   );
 }

@@ -5,7 +5,7 @@ const colors = {
     200: "#ffffff",
     300: "#ffffff",
     400: "#ffffff",
-    500: "#ffffff",
+    500: "fffffff",
     600: "#cccccc",
     700: "#999999",
     800: "#666666",

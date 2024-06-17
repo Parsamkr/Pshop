@@ -4,7 +4,7 @@ const searchInTree = (tree, slug) => {
   // }
 
   var result = null; // Use a variable to store the result
-  console.log("s : ", slug);
+
   if (slug == "root") {
     result = {
       name: tree.name,
@@ -20,12 +20,13 @@ const searchInTree = (tree, slug) => {
   } else {
     tree.children.some((parent) => {
       // Use `some` to allow early exit
-
+      console.log(parent);
       let data = {
         name: "",
         parent: "",
         slug: "",
         children: [],
+        image: "",
       };
 
       if (parent.slug === slug) {
@@ -65,6 +66,7 @@ const searchInTree = (tree, slug) => {
               if (lilchild.slug === slug) {
                 data.name = lilchild.name;
                 data.slug = lilchild.slug;
+                data.image = parent.image;
                 data.parent = { name: child.name, slug: child.slug };
                 if (lilchild.children) {
                   data.children = lilchild?.children.map((item) => ({

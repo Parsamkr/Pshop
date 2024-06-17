@@ -1,7 +1,6 @@
 "use client";
 import LogOutApi from "@/api/credentils/LogOutApi";
 import whoAmI from "@/api/credentils/whoAmI";
-import Link from "next/link";
 import React from "react";
 export default function Posts() {
   return (

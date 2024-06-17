@@ -1,31 +1,45 @@
+"use client";
 import {
-  Button,
   Modal,
   ModalContent,
   ModalOverlay,
   Stack,
-  useDisclosure,
+  Box,
 } from "@chakra-ui/react";
 import React from "react";
 import LoginModalHeader from "./parts/LoginModalHeader";
 import LoginModalForm from "./parts/LoginModalForm";
-export default function LoginModal() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+import { useRouter } from "next/navigation";
 
+export default function LoginModal({ close }) {
+  const router = useRouter();
+  const handleClose = () => {
+    router.push("/");
+  };
   return (
-    <>
-      <Button onClick={() => onOpen()} m={4}>
-        Login
-      </Button>
-      <Modal isCentered dir={"rtl"} onClose={onClose} isOpen={isOpen}>
-        <ModalOverlay />
-        <ModalContent minWidth={"560px"} dir="rtl">
+    <Box zIndex={"10"}>
+      <Modal
+        trapFocus={false}
+        isCentered
+        dir={"rtl"}
+        onClose={() => {
+          handleClose();
+        }}
+        isOpen={true}
+      >
+        {close ? <ModalOverlay /> : <ModalOverlay bgColor={"white"} />}
+
+        <ModalContent
+          boxShadow={!close && `0px 0px 30px  rgba(36, 69, 135 , .3)`}
+          minWidth={"560px"}
+          dir="rtl"
+        >
           <Stack>
-            <LoginModalHeader />
-            <LoginModalForm />
+            <LoginModalHeader handleClose={handleClose} close={close} />
+            <LoginModalForm close={close} />
           </Stack>
         </ModalContent>
       </Modal>
-    </>
+    </Box>
   );
 }
