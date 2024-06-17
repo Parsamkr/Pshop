@@ -36,3 +36,6 @@ client/.vercel
 # typescript
 client/*.tsbuildinfo
 client/next-env.d.ts
+
+#client env
+client/.env

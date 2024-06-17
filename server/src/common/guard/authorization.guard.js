@@ -8,8 +8,9 @@ require("dotenv").config();
 
 const authorization = async (req, res, next) => {
   try {
-    console.log("here auth  : ", req.cookies);
-    const token = req?.cookies?.[AccessToken];
+    // const token = req?.cookies?.[AccessToken];
+    console.log("here: ", req?.headers?.authorization);
+    const token = req?.headers?.authorization.split(" ")[1];
     if (!token) {
       throw new createHttpError.Unauthorized(authrizationMessage.login);
     }

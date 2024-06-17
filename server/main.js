@@ -18,7 +18,6 @@ async function main() {
   app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
   app.use(express.static("public"));
   app.use(mainRouter);
-
   SwaggerConfig(app);
   notFoundHandler(app);
   allExceptionHandler(app);
