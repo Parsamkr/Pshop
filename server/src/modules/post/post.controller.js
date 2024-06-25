@@ -9,6 +9,7 @@ const {
   removePropertyInObject,
   decodeInObject,
 } = require("../../common/utils/functions");
+const { query } = require("express");
 require("dotenv").config();
 
 class postController {
@@ -41,8 +42,10 @@ class postController {
         "images",
         "amount",
       ]);
+
       // decode options
       decodeInObject(options);
+
       // get detail of the address from map.ir
       const { address, province, city, district } = await getAddress(lat, lng);
 
@@ -108,8 +111,8 @@ class postController {
       // const posts = await this.#service.findAll(query);
 
       const options = req.query; // Assuming options are passed as query parameters
-      const cursor = await this.#service.findAll(options);
 
+      const cursor = await this.#service.findAll(options);
       res.setHeader("Content-Type", "text/event-stream");
       res.setHeader("Cache-Control", "no-cache");
       res.setHeader("Connection", "keep-alive");

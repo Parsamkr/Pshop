@@ -20,7 +20,6 @@ const searchInTree = (tree, slug) => {
   } else {
     tree.children.some((parent) => {
       // Use `some` to allow early exit
-      console.log(parent);
       let data = {
         name: "",
         parent: "",
@@ -32,6 +31,7 @@ const searchInTree = (tree, slug) => {
       if (parent.slug === slug) {
         data.name = parent.name;
         data.slug = parent.slug;
+        data.image = parent.image;
         data.parent = { name: tree.name, slug: tree.slug };
         if (parent.children) {
           data.children = parent.children.map((item) => ({
@@ -49,6 +49,7 @@ const searchInTree = (tree, slug) => {
           if (child.slug === slug) {
             data.name = child.name;
             data.slug = child.slug;
+            data.image = parent.image;
             data.parent = { name: parent.name, slug: parent.slug };
             if (child.children) {
               data.children = child?.children.map((item) => ({

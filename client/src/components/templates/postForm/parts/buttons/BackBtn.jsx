@@ -13,7 +13,6 @@ export default function BackBtn() {
 
   useEffect(() => {
     if (pageSlug && tree.children.length) {
-      console.log(pageSlug);
       searchTree(tree, pageSlug).then((data) => setCatData(data));
     }
   }, [pageSlug, tree]);

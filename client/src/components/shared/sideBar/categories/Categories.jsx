@@ -1,5 +1,5 @@
 "use client";
-import { Stack, Text, Skeleton, Divider } from "@chakra-ui/react";
+import { Stack, Text, Skeleton } from "@chakra-ui/react";
 import CatBtn from "./catBtn/CatBtn";
 import concatPandC from "@/utils/categoryFuncs/concatPandC";
 export default function Categories() {

@@ -7,9 +7,9 @@ const { AccessToken } = require("../constant/cookie.enum");
 require("dotenv").config();
 
 const authorization = async (req, res, next) => {
+
   try {
     // const token = req?.cookies?.[AccessToken];
-    console.log("here: ", req?.headers?.authorization);
     const token = req?.headers?.authorization.split(" ")[1];
     if (!token) {
       throw new createHttpError.Unauthorized(authrizationMessage.login);

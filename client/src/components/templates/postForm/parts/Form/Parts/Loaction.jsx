@@ -2,7 +2,10 @@ import { Divider, FormLabel, Select, Stack, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Map from "@/components/shared/myMap/myMap";
 import colors from "@/theme/colors";
-export default function Loaction({ setValue }) {
+import { useFormContext } from "react-hook-form";
+export default function Loaction() {
+  const { setValue } = useFormContext();
+
   const [currentLocation, setCurrentLocation] = useState({ lat: 20, lng: 20 });
   const [city, setCity] = useState({
     name: "طهران",

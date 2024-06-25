@@ -2,7 +2,7 @@
 const generateTree = (data) => {
   const tree = [];
   data.forEach((parent) => {
-    const node = { slug: parent.slug, name: parent.name };
+    const node = { slug: parent.slug, name: parent.name, id: parent._id };
     if (parent.icon) {
       node.icon = parent.icon;
       node.image = parent.Image;

@@ -19,21 +19,23 @@ export default function Navbar({ catData }) {
   }));
   const setmenucategories = useParentCatStore((state) => state.setCategories);
   const setTree = useSlugtree((state) => state.setTree);
-  // initial setups
+
   if (categories.length <= 0) {
     setChildCategories(catData);
     setmenucategories(catData);
     setTree(generateTree(catData));
   }
+
   const city = "تهران";
   const pathname = usePathname();
   return (
     <Flex
-      
       alignItems={"center"}
       backgroundColor={colors.primary[50]}
       justifyContent={"space-between"}
+      top={0}
       position={"sticky"}
+      zIndex={2}
       fontSize={"15px"}
       boxShadow={"0px 2px 10px 0px rgba(0,0,0,.05)"}
     >
@@ -64,7 +66,7 @@ export default function Navbar({ catData }) {
           orientation="vertical"
           my={2.5}
         />
-        <Box flexShrink={0} as={Link} href={"./"}>
+        <Box flexShrink={0} as={Link} href={"/"}>
           <Image
             borderRadius="0"
             flexShrink={0}
@@ -74,7 +76,6 @@ export default function Navbar({ catData }) {
           />
         </Box>
       </Flex>
-    
     </Flex>
   );
 }

@@ -1,32 +1,49 @@
 "use client";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { FormControl, Stack } from "@chakra-ui/react";
-import Loaction from "./Parts/Loaction";
-import ImageUpload from "./Parts/ImageUpload";
+import React, { useEffect } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { Stack } from "@chakra-ui/react";
+import Loaction from "./parts/Loaction";
+import ImageUpload from "./parts/imageUpload/ImageUpload";
+import StatickInput from "./parts/StatickInput";
+import DynamicInputs from "./parts/dynamicInputs/DynamicInputs";
+import { useSearchParams } from "next/navigation";
+import SubmitButton from "./parts/SubmitButton";
+import PostFormSubmit from "@/utils/postFormSubmit/PostFormSubmit";
+
+import useSlugtree from "@/store/catStores/slugTree";
+
 export default function CreateForm() {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-    watch,
-  } = useForm({
+  const { findSlugId, tree } = useSlugtree();
+  const pageSlug = useSearchParams().get("slug");
+
+  const form = useForm({
     defaultValues: {
-      location: { lat: 10, lng: 10 },
+      slugId: false,
+      images: [],
+      location: { lat: 36.56594513737352, lng: 53.05860328266101 },
     },
   });
-  console.log("watch : ", watch("location"));
+  useEffect(() => {
+    if (!pageSlug) return;
+    const SetSlugId = async () => {
+      let slugId = await findSlugId(tree, pageSlug);
+      form.setValue("slugId", slugId);
+    };
+    SetSlugId();
+  }, [pageSlug, tree]);
+  const onError = (errors, e) => console.log("errors, e", errors, e);
+
   return (
-    <>
-      <FormControl onSubmit={handleSubmit((data) => console.log(data))}>
+    <FormProvider {...form}>
+      <form onSubmit={form.handleSubmit(PostFormSubmit, onError)}>
         <Stack>
-          <Loaction setValue={setValue} />
-          {/* <ImageUpload /> */}
-          {/* <Input type="email" />
-        <FormHelperText>We'll never share your email.</FormHelperText> */}
+          <Loaction />
+          <ImageUpload />
+          <DynamicInputs pageSlug={pageSlug} />
+          <StatickInput />
+          <SubmitButton />
         </Stack>
-      </FormControl>
-    </>
+      </form>
+    </FormProvider>
   );
 }

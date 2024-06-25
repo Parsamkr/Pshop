@@ -10,10 +10,19 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import SearchSuggestions from "./searchSuggestions";
 import SearchResults from "./SearchResults";
+import { usePathname, useRouter } from "next/navigation";
+
 const SearchBar = () => {
   const [value, setValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const HandleSearch = (e) => {
+    console.log("here", pathname);
+    router.push(`${pathname}${value ? `?q=${value}` : ""}`); // Optional: prevent page scroll on push
 
+    // You can also use router.replace to replace current history entry
+  };
   return (
     <>
       <InputGroup
@@ -31,29 +40,33 @@ const SearchBar = () => {
           color={"grey"}
           transition=".4s"
           position={"relative"}
+          zIndex={112}
+          _hover={{ cursor: "pointer" }}
+          onClick={() => HandleSearch()}
           justifySelf={"center"}
           _groupHover={{ transition: ".4s", color: "black" }}
           pointerEvents="none"
         >
           <SearchIcon />
         </InputLeftElement>
-        <Input
-          dir="rtl"
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
-          fontSize={"15px"}
-          border={"0px"}
-          flexBasis={"auto"}
-          _focus={{
-            boxShadow: "none",
-            border: "0px",
-          }}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          type="text"
-          placeholder="جست و جو"
-        />
-
+        <form onSubmit={() => HandleSearch()} style={{ flexBasis: "90%" }}>
+          <Input
+            dir="rtl"
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+            fontSize={"15px"}
+            border={"0px"}
+            flexBasis={"auto"}
+            _focus={{
+              boxShadow: "none",
+              border: "0px",
+            }}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            type="text"
+            placeholder="جست و جو"
+          />
+        </form>
         <Box
           style={
             isFocused
@@ -83,11 +96,7 @@ const SearchBar = () => {
             color={"rgba(150,150,150,1)"}
             bgColor={"rgba(150,150,150,1)"}
           />
-          {value ? (
-            <SearchResults value={value} />
-          ) : (
-            <SearchSuggestions />
-          )}
+          {value ? <SearchResults value={value} /> : <SearchSuggestions />}
         </Box>
       </InputGroup>
     </>

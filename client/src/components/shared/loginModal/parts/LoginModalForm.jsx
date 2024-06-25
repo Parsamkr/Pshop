@@ -3,7 +3,7 @@ import React from "react";
 import LoginInput from "./loginFormParts/LoginInput";
 import { useState } from "react";
 import phoneSchema from "@/utils/loginControl/PhoneSchema";
-import SendOtpAPI from "@/api/credentils/SendOtpAPI";
+import SendOtpAPI from "@/api/credentils/SendOtpApi";
 import MyModalFooter from "./loginFormParts/MyModalFooter";
 import LogInFormTitle from "./loginFormParts/LogInFormTitle";
 import CheckOtpApi from "@/api/credentils/CheckOtpApi";

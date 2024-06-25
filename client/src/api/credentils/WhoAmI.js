@@ -10,7 +10,8 @@ const whoAmI = async () => {
     const user = await fetch("http://localhost:3000/user/whoami/", {
       cache: "no-cache",
       headers: { Authorization: myAthorization },
-    });
+    }).then((response) => response.json());
+
     return user;
   } catch (error) {
     console.log("error : ", error);

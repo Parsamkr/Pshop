@@ -2,7 +2,7 @@ import { Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import BackBtn from "./parts/buttons/BackBtn";
 import CreateForm from "./parts/Form/CreateForm";
-import ImageUpload from "./parts/Form/Parts/ImageUpload";
+
 
 export default function CreatePostForm() {
   return (
@@ -13,7 +13,7 @@ export default function CreatePostForm() {
         </Text>
         <BackBtn />
         <CreateForm />
-        <ImageUpload />
+        
       </Stack>
     </Stack>
   );

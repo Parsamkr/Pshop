@@ -33,10 +33,8 @@ export default function CatBtn({ data }) {
         changeCat(data.changeParent("All"));
         return;
       case "parent":
-        changeCat(data.createSelectedCat(parent , "All"));
-
+        changeCat(data.createSelectedCat(parent, "All"));
         return;
-
       default:
         break;
     }
@@ -46,6 +44,8 @@ export default function CatBtn({ data }) {
       {selected && (
         <Flex
           cursor={"pointer"}
+          as={Link}
+          href={"/"}
           color={colors.secondary[800]}
           _hover={{ color: "black", gap: "5px", transition: ".5s" }}
           transition={".5s"}
